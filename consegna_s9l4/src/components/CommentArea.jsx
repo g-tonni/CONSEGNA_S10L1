@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Row, Spinner } from 'react-bootstrap'
+import { Row, Alert } from 'react-bootstrap'
 import CommentList from './CommentList'
 import AddComment from './AddComment'
 
@@ -41,16 +41,20 @@ class CommentArea extends Component {
       })
   }
 
-  componentDidMount() {
-    this.getComments()
+  componentDidUpdate(prevProps) {
+    if (prevProps.bookId !== this.props.bookId) {
+      this.getComments()
+    }
   }
 
   render() {
     return (
       <Row>
         {this.state.loading && (
-          <div className="text-center">
-            <Spinner animation="border" variant="warning"></Spinner>
+          <div>
+            <Alert variant="warning">
+              Non è stato selezionato alcun commento
+            </Alert>
           </div>
         )}
         <CommentList commentArr={this.state.comments} />

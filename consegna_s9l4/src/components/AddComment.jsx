@@ -10,7 +10,7 @@ class AddComment extends Component {
     },
   }
 
-  putComments = function () {
+  putComments = () => {
     const commentsURL = 'https://striveschool-api.herokuapp.com/api/comments/'
 
     fetch(commentsURL, {
@@ -32,6 +32,17 @@ class AddComment extends Component {
       .catch((err) => {
         console.log('ERRORE: ', err)
       })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.bookId !== this.props.bookId) {
+      this.setState({
+        commentPost: {
+          ...this.state.commentPost,
+          elementId: this.props.bookId,
+        },
+      })
+    }
   }
 
   render() {
