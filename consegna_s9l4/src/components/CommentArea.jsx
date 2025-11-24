@@ -49,7 +49,7 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <Row>
+      <>
         {this.state.loading && (
           <div>
             <Alert variant="warning">
@@ -59,7 +59,7 @@ class CommentArea extends Component {
         )}
         <CommentList commentArr={this.state.comments} />
         <AddComment bookId={this.props.bookId} />
-      </Row>
+      </>
     )
   }
 }
